@@ -1,0 +1,7 @@
+package com.oregonmade.joust.utilities;
+//Intelligence interface for ai
+
+public interface Intelligence
+{
+	private void fear();
+}

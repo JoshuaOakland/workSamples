@@ -1,0 +1,66 @@
+package com.oregonmade.joust.utilities;
+
+import com.badlogic.gdx.math.Vector2;
+
+
+public class constants
+{
+	public static final Vector2 WORLD_GRAVITY = new Vector2(0f,-9.8f);
+	public static float playerX =32;
+	public static float playerY =64;
+	public static float testingY =400;
+	public static float testingX =400;
+	public static float originX =32;
+	public static float originY =64;
+	public static float guide =20;
+	public static final float HEAD_X = originX;
+	public static final float HEAD_Y = originY;
+	public static final float CHEST_X = originX;
+	public static final float CHEST_Y = originY-guide;
+	public static final float LEFT_UPPERARM_X = originX+guide;
+	public static final float LEFT_UPPERARM_Y = originY-guide;
+	public static final float RIGHT_UPPERARM_X = originX-guide;
+	public static final float RIGHT_UPPERARM_Y = originY-guide;
+	public static final float LEFT_LOWERARM_X = originX+guide;
+	public static final float LEFT_LOWERARM_Y = originY-guide*2;
+	public static final float RIGHT_LOWERARM_X = originX-guide;
+	public static final float RIGHT_LOWERARM_Y = originY-guide*2;
+	public static final float LEFT_UPPERLEG_X = originX+guide;
+	public static final float LEFT_UPPERLEG_Y = originY-guide*3;
+	public static final float RIGHT_UPPERLEG_X = originX-guide;
+	public static final float RIGHT_UPPERLEG_Y = originY-guide*3;
+	public static final float LEFT_LOWERLEG_X = originX+guide;
+	public static final float LEFT_LOWERLEG_Y = originY-guide*4;
+	public static final float RIGHT_LOWERLEG_X = originX-guide;
+	public static final float RIGHT_LOWERLEG_Y = originY-guide*4;
+	public static final float GROUND_X = 0;
+	public static final float GROUND_Y = 0;
+	public static final float GROUND_WIDTH = 800f;
+	public static final float GROUND_HEIGHT = 1f;
+	public static final float GROUND_DENSITY = 0f;
+	public static final float RUNNER_X = 300;
+	public static final float RUNNER_Y = 300;
+	public static final float RUNNER_WIDTH = 100f;
+	public static final float RUNNER_HEIGHT = 200f;
+	public static final float RUNNER_DENSITY = 0.5f;
+	public static final int APP_WIDTH = 800;
+	public static final int APP_HEIGHT = 480;
+	public static final int CAMERA_WIDTH = 800;
+	public static final int CAMERA_HEIGHT = 480;
+	public static final int backgroundX = 0;
+	public static final int backgroundY = 0;
+/*	public static float playerX =32;
+	public static float playerY =64;*/
+	public static float playerLanceX =32;
+	public static float playerLanceY =42;
+	public static float notPlayerX =700-32;
+	public static float notPlayerY =64;
+	public static float notPlayerLanceX = 700-32;
+	public static float notPlayerLanceY =42;
+	public static float horseSpeed = 1.5f;
+
+	public static float horseX = 0;
+	public static float horseY = 0;
+	public static float horse2X = 700;
+	public static float horse2Y =0;
+}

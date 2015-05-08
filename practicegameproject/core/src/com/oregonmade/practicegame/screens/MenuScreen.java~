@@ -1,0 +1,29 @@
+package com.oregonmade.practicegame.screens;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.oregonmade.practicegame.utils.Constants;
+
+public class MenuScreen implements Screen
+{
+
+	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
+	private void setupTouchControlAreas()
+	{
+		touchPoint = new Vector3();
+		screenLeftSide = new Rectangle(0,0, getCamera().viewportWidth / 2, 				getCamera().viewportHeight);
+		screenRightSide = new Rectangle(getCamera().viewportWidth / 2, 0, 				getCamera().viewportWidth / 2, getCamera().viewportHeight);
+		Gdx.input.setInputProcessor(this);
+	}
+
+	public void SetUpMenuScreen()
+	{
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 200,200);
+		
+	}
+}

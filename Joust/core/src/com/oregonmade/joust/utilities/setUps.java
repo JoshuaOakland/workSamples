@@ -1,0 +1,161 @@
+//Setup utility to create entities within different screens
+package com.oregonmade.joust.utilities;
+
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.audio.Music;
+import com.oregonmade.joust.joust;
+import com.oregonmade.joust.menus.mainMenuScreen;
+import com.oregonmade.joust.menus.optionsMenuScreen;
+import com.oregonmade.joust.creation.definePlayer;
+import com.oregonmade.joust.utilities.constants;
+import com.oregonmade.joust.screens.gameScreen;
+
+
+
+public class setUps
+{
+	public static Body createGround(World world)
+	{
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.position.set(new Vector2(constants.GROUND_X, constants.GROUND_Y));
+		Body body = world.createBody(bodyDef); 
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(constants.GROUND_WIDTH, 0);
+		body.createFixture(shape, constants.GROUND_DENSITY);
+		shape.dispose();
+		return body;
+	}
+
+	public static Body createRunner(World world) 
+	{
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyDef.BodyType.DynamicBody;
+		bodyDef.position.set(new Vector2(constants.RUNNER_X,constants.RUNNER_Y));
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(constants.RUNNER_WIDTH / 2, constants.RUNNER_HEIGHT / 2);
+		Body body = world.createBody(bodyDef);
+		body.createFixture(shape,constants.RUNNER_DENSITY);
+		body.resetMassData();
+		shape.dispose();
+		return body;
+	}
+	public static Body createRunner(World world, float x, float y) 
+	{
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyDef.BodyType.DynamicBody;
+		bodyDef.position.set(new Vector2(x,y));
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(constants.RUNNER_WIDTH / 2, constants.RUNNER_HEIGHT / 2);
+		Body body = world.createBody(bodyDef);
+		body.createFixture(shape,constants.RUNNER_DENSITY);
+		body.resetMassData();
+		shape.dispose();
+		return body;
+	}
+	public static DistanceJointDef makeJoint(World world, DistanceJointDef jointToMake, Body target1, Body target2, int lengthOfJoint)
+	{
+		jointToMake = new DistanceJointDef();
+		jointToMake.bodyA = target1;
+		jointToMake.bodyB = target2;
+		jointToMake.length = lengthOfJoint;
+		world.createJoint(jointToMake);
+		return jointToMake;
+	}
+	public static DistanceJointDef makeJoint(World world, DistanceJointDef jointToMake, Body target1, Body target2, int lengthOfJoint,int anchorAX, int anchorAY,int anchorBX, int anchorBY)
+	{
+		jointToMake = new DistanceJointDef();
+		jointToMake.bodyA = target1;
+		jointToMake.bodyB = target2;
+		jointToMake.length = lengthOfJoint;
+		jointToMake.localAnchorA.set(anchorAX,anchorAY);
+		jointToMake.localAnchorB.set(anchorBX,anchorBY);
+		jointToMake.collideConnected=true;
+		world.createJoint(jointToMake);
+		return jointToMake;
+	}
+	public static DistanceJointDef makeJoint(World world, DistanceJointDef jointToMake, Body target1, Body target2, float lengthOfJoint,float anchorAX, float anchorAY,float anchorBX, float anchorBY)
+	{
+		jointToMake = new DistanceJointDef();
+		jointToMake.bodyA = target1;
+		jointToMake.bodyB = target2;
+		jointToMake.length = (int)lengthOfJoint;
+		jointToMake.localAnchorA.set((int)anchorAX,(int)anchorAY);
+		jointToMake.localAnchorB.set((int)anchorBX,(int)anchorBY);
+		jointToMake.collideConnected=true;
+		world.createJoint(jointToMake);
+		return jointToMake;
+	}
+	public static Body createRunner(World world, float x, float y,float h, float w) 
+	{
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyDef.BodyType.DynamicBody;
+		bodyDef.position.set(new Vector2(x,y));
+		PolygonShape shape = new PolygonShape();
+		shape.setAsBox(w,h);
+		Body body = world.createBody(bodyDef);
+		body.createFixture(shape,constants.RUNNER_DENSITY);
+		body.resetMassData();
+		shape.dispose();
+		return body;
+	}
+
+	public static World setUpWorld(World world)
+	{
+		//setting up box2d world
+		world = new World(constants.WORLD_GRAVITY, true);
+		return (world);
+	}
+	public static OrthographicCamera setUpCamera(OrthographicCamera camera)
+	{
+		//set up the camera
+		camera = new OrthographicCamera(constants.CAMERA_WIDTH,constants.CAMERA_HEIGHT);
+		return(camera);
+	}
+	public void setUpGround()
+	{
+		//not sure what args to use?
+	}
+	public void setUpHorse()
+	{
+		//again...
+	}
+	public void setUpMusic()
+	{
+		//could possibly take args...but I'm not sure why I would at this point.
+	}
+	public static void setUpControls(Body runner, Texture horse, float horseX, float horseY)
+	{
+
+		if (Gdx.input.isKeyPressed(Keys.A))
+		{
+			runner.applyLinearImpulse(10000f,0f,10f,0f,true);
+		}
+		if (Gdx.input.isKeyPressed(Keys.D))
+		{
+			runner.applyLinearImpulse(-10000f,0f,10f,0f,true);
+		}
+		if (Gdx.input.isKeyPressed(Keys.SPACE))
+		{
+			runner.applyLinearImpulse(0f,10000f,0f,0f,true);
+		}
+		if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT))
+		{
+			runner.applyLinearImpulse(0f,-10000f,0f,0f,true);
+		}
+	}
+}
